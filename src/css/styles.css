@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    color: #ffffff;
+
 }
 
 ul {
@@ -35,7 +35,11 @@ li {
 #left-col {
     height: 100%;
     background-color: #080808;
-    color: black;
+    color: #ffffff;
+}
+
+.dropdown {
+    color: #000000;
 }
 
 #location-list {
