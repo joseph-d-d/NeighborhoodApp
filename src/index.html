@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="js/knockout-3.4.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/ListItem.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 top-bar">
+            <div class="navbar navbar-light bg-faded">
+                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#left-col"
+                        aria-controls="left-col" aria-expanded="false" aria-label="Toggle navigation">
+                    &#9776;
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-10 top-bar">
+
+        </div>
+    </div>
+
+    <div class="row" id="map-row">
+        <div class="col-md-2 navbar-toggleable-xs collapse" id="left-col">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter <span
+                        class="caret"></span></button>
+
+                <button type="button" class="close" aria-label="Close" data-bind="click: removeFilter">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul class="dropdown-menu" data-bind="foreach: listItems">
+                    <li data-bind="click: $parent.filter, text:  item.name"></li>
+                </ul>
+            </div>
+            <div id="location-list">
+                <ul data-bind="foreach: listItems">
+                    <li data-bind="text: item.name,  visible: visible"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10" id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkW6FCwPhwzhiHG48DbjzCFP_1lGXLQWA&v=3&callback=initMap">
+</script>
+<script async defer
+        src="js/viewModel.js">
+</script>
+</body>
+</html>

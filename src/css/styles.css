@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+    color: #ffffff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    font-size: small;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.top-bar {
+    height: 40px;
+    background-color: #000000;
+}
+
+.container {
+    height: 100%;
+}
+
+#map-container, #map-row {
+    height: 100%;
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+#left-col {
+    height: 100%;
+    background-color: #080808;
+    color: black;
+}
+
+#location-list {
+    color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    .left-col {
+    }
+}
