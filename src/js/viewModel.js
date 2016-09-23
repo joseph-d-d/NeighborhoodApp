@@ -33,6 +33,8 @@ function LocationViewModel() {
 
     ]);
     self.filter = function (listItem) {
+        console.log("Filtered");
+        /*
         for (var i = 0; i < self.listItems().length; i++) {
             self.listItems()[i].visible(false);
             if (mapMarkers[i].address !== listItem.item.address) {
@@ -40,6 +42,8 @@ function LocationViewModel() {
             }
         }
         listItem.visible(true);
+        */
+        return true;
     };
 
     self.removeFilter = function () {

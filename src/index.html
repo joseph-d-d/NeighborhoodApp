@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-2 top-bar">
+        <div class="col-md-3 top-bar">
             <div class="navbar navbar-light bg-faded">
                 <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#left-col"
                         aria-controls="left-col" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,23 +23,20 @@
             </div>
         </div>
 
-        <div class="col-md-10 top-bar">
+        <div class="col-md-9 top-bar">
 
         </div>
     </div>
 
     <div class="row" id="map-row">
-        <div class="col-md-2 navbar-toggleable-xs collapse" id="left-col">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter <span
-                        class="caret"></span></button>
-
-                <button type="button" class="close" aria-label="Close" data-bind="click: removeFilter">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <ul class="dropdown-menu" data-bind="foreach: listItems">
-                    <li data-bind="click: $parent.filter, text:  item.name"></li>
-                </ul>
+        <div class="col-md-3 navbar-toggleable-xs collapse" id="left-col">
+            <div class="filter input-group">
+                <input class="form-control" type="text" placeholder="Filter By Name" data-bind="event: {keypress: filter}">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" aria-label="Close" data-bind="click: removeFilter">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </span>
             </div>
             <div id="location-list">
                 <ul data-bind="foreach: listItems">
@@ -47,7 +44,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-10" id="map-container">
+        <div class="col-md-9" id="map-container">
             <div id="map"></div>
         </div>
     </div>
