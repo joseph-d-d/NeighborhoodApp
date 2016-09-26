@@ -31,7 +31,7 @@
     <div class="row" id="map-row">
         <div class="col-md-3 navbar-toggleable-xs collapse" id="left-col">
             <div class="filter input-group">
-                <input class="form-control" type="text" placeholder="Filter By Name" data-bind="event: {keypress: filter}">
+                <input class="form-control" type="text" placeholder="Filter By Name" id="filter-input" data-bind="event: {keyup: filter}">
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" aria-label="Close" data-bind="click: removeFilter">
                         <span aria-hidden="true">&times;</span>

@@ -6,6 +6,7 @@ var mapMarkers = [];
 var thirdPartyData = [];
 var infoWindow = new google.maps.InfoWindow();
 var locationModel;
+var filterInputElement = $('#filter-input');
 function Marker(address) {
     this.address = address;
 }
@@ -32,7 +33,22 @@ function LocationViewModel() {
         new ListItem(new Location("Century Cinema 16", "1500 N Shoreline Blvd, Mountain View, CA 94043"), true)
 
     ]);
-    self.filter = function (listItem) {
+
+    self.filter = function () {
+        var filterBy = filterInputElement.val();
+        for(var i = 0; i < self.listItems().length; i++){
+            if(self.listItems()[i].item.name.substring(0,filterBy.length).toLowerCase() === filterBy.toLowerCase()){
+                self.listItems()[i].visible(true);
+                mapMarkers[i].marker.setMap(map);
+            }
+            else {
+                self.listItems()[i].visible(false);
+                mapMarkers[i].marker.setMap(null);
+            }
+        }
+        if(filterBy.length === 0){
+            self.removeFilter();
+        }
         console.log("Filtered");
         /*
         for (var i = 0; i < self.listItems().length; i++) {
@@ -51,6 +67,7 @@ function LocationViewModel() {
             self.listItems()[i].visible(true);
             mapMarkers[i].marker.setMap(map);
         }
+        filterInputElement.val('');
     };
 
     function getMarker(name, address, expectedNum) {
