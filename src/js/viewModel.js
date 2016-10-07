@@ -46,7 +46,6 @@ function LocationViewModel() {
         if(filterBy.length === 0){
             self.removeFilter();
         }
-        console.log("Filtered");
         return true;
     };
 
