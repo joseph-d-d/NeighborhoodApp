@@ -79,7 +79,8 @@ function LocationViewModel() {
     };
 
     self.getThirdPartyData = function(name, address){
-
+        //TODO add fourSquare Request
+        //TODO apply correct data to location item third party data
     };
 
     function attachInfoWindow(marker) {
@@ -97,7 +98,7 @@ function LocationViewModel() {
     var numResponseExpected = self.listItems().length;
     for (var i = 0; i < self.listItems().length; i++) {
         self.getMarker(self.listItems()[i].item.name, self.listItems()[i].item.address, numResponseExpected);
-
+        self.getThirdPartyData(self.listItems()[i].item.name, self.listItems()[i].item.address);
     }
 }
 
