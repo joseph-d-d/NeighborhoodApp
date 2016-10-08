@@ -2,6 +2,8 @@
  * Created by Joseph on 8/31/2016.
  */
 var MAP_KEY = 'AIzaSyCkW6FCwPhwzhiHG48DbjzCFP_1lGXLQWA';
+var CLIENT_ID = 'ZWI00VLLOOCDO3KNPL1URSOBTSK3BNUVJYTI3PDMDQES4E2S';
+var CLIENT_SECRECT = 'QLCIS5IGUN1QWOW5GLCKBTAKIISEFE3QHTS011R1C0DLI1DP';
 var infoWindow = new google.maps.InfoWindow();
 var locationModel;
 var filterInputElement = $('#filter-input');
@@ -33,8 +35,8 @@ function LocationViewModel() {
 
     self.filter = function () {
         var filterBy = filterInputElement.val();
-        for(var i = 0; i < self.listItems().length; i++){
-            if(self.listItems()[i].item.name.substring(0,filterBy.length).toLowerCase() === filterBy.toLowerCase()){
+        for (var i = 0; i < self.listItems().length; i++) {
+            if (self.listItems()[i].item.name.substring(0, filterBy.length).toLowerCase() === filterBy.toLowerCase()) {
                 self.listItems()[i].visible(true);
                 self.listItems()[i].item.marker.setMap(map);
             }
@@ -43,7 +45,7 @@ function LocationViewModel() {
                 self.listItems()[i].item.marker.setMap(null);
             }
         }
-        if(filterBy.length === 0){
+        if (filterBy.length === 0) {
             self.removeFilter();
         }
         return true;
@@ -57,7 +59,7 @@ function LocationViewModel() {
         filterInputElement.val('');
     };
 
-    self.getMarker = function(name, address, expectedNum) {
+    self.getMarker = function (name, address, expectedNum) {
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + address.replace(/ /g, '+') + MAP_KEY, function (data) {
             var index = findItemInArray(self.listItems, name);
             self.listItems()[index].item.marker = new google.maps.Marker({
@@ -69,7 +71,7 @@ function LocationViewModel() {
             numResponse++;
             if (numResponse === expectedNum) {
                 var markers = [];
-                for(var i = 0; i < self.listItems().length; i++){
+                for (var i = 0; i < self.listItems().length; i++) {
                     markers.push(self.listItems()[i].item.marker)
                 }
                 resizeMap(markers);
@@ -77,8 +79,20 @@ function LocationViewModel() {
         });
     };
 
-    self.getThirdPartyData = function(name, address){
-        //TODO add fourSquare Request
+    self.getThirdPartyData = function (name, address) {
+        $.ajax({
+            method: "GET",
+            url: 'https://api.foursquare.com/v2/venues/search' +
+            '?client_id=' + CLIENT_ID +
+            '&client_secret=' + CLIENT_SECRECT +
+            '&v=20130815 ' +
+            '&near=' + "Mountain+View" +
+            '&query=' + name.replace(/ /g, '+') +
+            '&address' + address.replace(/ /g, '+')
+        }).done(function (response) {
+            console.log(response);
+        });
+
         //TODO apply correct data to location item third party data
     };
 
@@ -89,7 +103,7 @@ function LocationViewModel() {
         });
     }
 
-    self.selectMarker = function(element){
+    self.selectMarker = function (element) {
         infoWindow.open(map, element.item.marker);
     };
 
@@ -101,9 +115,9 @@ function LocationViewModel() {
     }
 }
 
-function findItemInArray(array, query){
-    for(var i = 0; i < array().length; i++){
-        if(array()[i].item.name === query){
+function findItemInArray(array, query) {
+    for (var i = 0; i < array().length; i++) {
+        if (array()[i].item.name === query) {
             return i;
         }
     }
