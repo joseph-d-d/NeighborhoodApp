@@ -5,6 +5,10 @@ var MAP_KEY = 'AIzaSyCkW6FCwPhwzhiHG48DbjzCFP_1lGXLQWA';
 var CLIENT_ID = 'ZWI00VLLOOCDO3KNPL1URSOBTSK3BNUVJYTI3PDMDQES4E2S';
 var CLIENT_SECRECT = 'QLCIS5IGUN1QWOW5GLCKBTAKIISEFE3QHTS011R1C0DLI1DP';
 var infoWindow = new google.maps.InfoWindow();
+
+var headerHTML = "<h1>%%data</h1>";
+var infoHTML = "<p>%%data %%data</p>";
+var hyperLinkHTML = '<a href="%%data">%%data</a>';
 var locationModel;
 var filterInputElement = $('#filter-input');
 
@@ -13,7 +17,7 @@ function Location(name, address, marker, thirdPartyData) {
     self.name = name;
     self.address = address;
     self.marker = marker;
-    self.thirdPartData = thirdPartyData;
+    self.thirdPartyData = thirdPartyData;
 }
 
 function ListItem(item, visible) {
@@ -77,6 +81,7 @@ function LocationViewModel() {
                 resizeMap(markers);
             }
         });
+
     };
 
     self.getThirdPartyData = function (name, address) {
@@ -91,6 +96,11 @@ function LocationViewModel() {
             '&address' + address.replace(/ /g, '+')
         }).done(function (response) {
             console.log(response);
+            var index = findItemInArray(self.listItems, name);
+            var info = headerHTML.replace('%%data',response.response.venues[0].name);
+            info = info + infoHTML.replace('%%data', 'People here now').replace('%%data', response.response.venues[0].hereNow.count);
+            info = info + infoHTML.replace('%%data', 'Check in count').replace('%%data', response.response.venues[0].stats.checkinsCount);
+            self.listItems()[index].item.thirdPartyData = info;
         });
 
         //TODO apply correct data to location item third party data
@@ -98,12 +108,13 @@ function LocationViewModel() {
 
     function attachInfoWindow(marker) {
         marker.addListener('click', function () {
-            infoWindow.setContent("Address ");
-            infoWindow.open(map, this);
+
+            self.selectMarker()
         });
     }
 
     self.selectMarker = function (element) {
+        infoWindow.setContent(element.item.thirdPartyData);
         infoWindow.open(map, element.item.marker);
     };
 
