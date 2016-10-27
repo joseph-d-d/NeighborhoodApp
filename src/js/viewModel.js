@@ -80,6 +80,8 @@ function LocationViewModel() {
                 }
                 resizeMap(markers);
             }
+        }).fail(function(jqXHR, status, error){
+            console.log(status + ' ' + error);
         });
 
     };
@@ -101,6 +103,8 @@ function LocationViewModel() {
             info = info + infoHTML.replace('%%data', 'People here now').replace('%%data', response.response.venues[0].hereNow.count);
             info = info + infoHTML.replace('%%data', 'Check in count').replace('%%data', response.response.venues[0].stats.checkinsCount);
             self.listItems()[index].item.thirdPartyData = info;
+        }).fail(function(jqXHR, status, error){
+        console.log(status + ' ' + error);
         });
 
         //TODO apply correct data to location item third party data
