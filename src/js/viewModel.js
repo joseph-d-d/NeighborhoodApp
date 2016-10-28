@@ -6,8 +6,8 @@ var CLIENT_ID = 'ZWI00VLLOOCDO3KNPL1URSOBTSK3BNUVJYTI3PDMDQES4E2S';
 var CLIENT_SECRECT = 'QLCIS5IGUN1QWOW5GLCKBTAKIISEFE3QHTS011R1C0DLI1DP';
 var infoWindow = new google.maps.InfoWindow();
 
-var headerHTML = "<h1>%%data</h1>";
-var infoHTML = "<p>%%data %%data</p>";
+var headerHTML = '<h1>%%data</h1>';
+var infoHTML = '<p>%%data %%data</p>';
 var hyperLinkHTML = '<a href="%%data">%%data</a>';
 var locationModel;
 var filterInputElement = $('#filter-input');
@@ -102,12 +102,11 @@ function LocationViewModel() {
             var info = headerHTML.replace('%%data',response.response.venues[0].name);
             info = info + infoHTML.replace('%%data', 'People here now').replace('%%data', response.response.venues[0].hereNow.count);
             info = info + infoHTML.replace('%%data', 'Check in count').replace('%%data', response.response.venues[0].stats.checkinsCount);
+            info = info + hyperLinkHTML.replace('%%data', 'https://foursquare.com/').replace('%%data', 'Provided by Foursquare');
             self.listItems()[index].item.thirdPartyData = info;
         }).fail(function(jqXHR, status, error){
         console.log(status + ' ' + error);
         });
-
-        //TODO apply correct data to location item third party data
     };
 
     function attachInfoWindow(marker) {
@@ -120,6 +119,11 @@ function LocationViewModel() {
     self.selectMarker = function (element) {
         infoWindow.setContent(element.item.thirdPartyData);
         infoWindow.open(map, element.item.marker);
+        for(var i = 0; i < self.listItems().length; i++){
+            self.listItems()[i].item.marker.setAnimation(null);
+        }
+        element.item.marker.setAnimation(google.maps.Animation.BOUNCE);
+
     };
 
     var numResponse = 0;
