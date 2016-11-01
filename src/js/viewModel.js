@@ -112,17 +112,26 @@ function LocationViewModel() {
     function attachInfoWindow(marker) {
         marker.addListener('click', function () {
 
-            self.selectMarker()
+            for(var i = 0; i < self.listItems().length; i++){
+                if(marker === self.listItems()[i].item.marker){
+                    self.displayInfoWindow(self.listItems()[i].item);
+                    break;
+                }
+            }
         });
     }
 
-    self.selectMarker = function (element) {
-        infoWindow.setContent(element.item.thirdPartyData);
-        infoWindow.open(map, element.item.marker);
+    self.selectMarker = function(element){
+        self.displayInfoWindow(element.item);
+    };
+
+    self.displayInfoWindow = function (item) {
+        infoWindow.setContent(item.thirdPartyData);
+        infoWindow.open(map, item.marker);
         for(var i = 0; i < self.listItems().length; i++){
             self.listItems()[i].item.marker.setAnimation(null);
         }
-        element.item.marker.setAnimation(google.maps.Animation.BOUNCE);
+        item.marker.setAnimation(google.maps.Animation.BOUNCE);
 
     };
 
