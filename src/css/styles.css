@@ -25,6 +25,7 @@ li {
 
 #map-container, #map-row {
     height: 100%;
+    width: 100%;
     padding: 0;
 }
 
@@ -34,16 +35,14 @@ li {
 
 #left-col {
     height: 100%;
+    width: 25%;
+    position: fixed;
+    margin: 0;
     background-color: #080808;
     color: #ffffff;
+    z-index: 999;
 }
 
 #location-list {
     color: white;
-}
-
-
-@media only screen and (max-width: 800px) {
-    .left-col {
-    }
 }
