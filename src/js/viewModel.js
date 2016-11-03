@@ -28,6 +28,7 @@ function ListItem(item, visible) {
 function LocationViewModel() {
 
     var self = this;
+    var currentMarker = null;
     self.listItems = ko.observableArray([
         new ListItem(new Location("Google", "1600 Amphitheatre Pkwy, Mountain View, CA 94043", null, null), true),
         new ListItem(new Location("Shoreline Amphitheatre", "1 Amphitheatre Pkwy, Mountain View, CA 94043", null, null), true),
@@ -61,6 +62,7 @@ function LocationViewModel() {
             self.listItems()[i].item.marker.setMap(map);
         }
         filterInputElement.val('');
+        infoWindow.close();
     };
 
     self.getMarker = function (name, address, expectedNum) {
@@ -126,13 +128,23 @@ function LocationViewModel() {
     };
 
     self.displayInfoWindow = function (item) {
-        infoWindow.setContent(item.thirdPartyData);
-        infoWindow.open(map, item.marker);
+        if(currentMarker === item.marker){
+            self.resetMarkers();
+        }
+        else {
+            currentMarker = item.marker;
+            infoWindow.setContent(item.thirdPartyData);
+            infoWindow.open(map, item.marker);
+            item.marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    };
+
+    self.resetMarkers = function(){
         for(var i = 0; i < self.listItems().length; i++){
             self.listItems()[i].item.marker.setAnimation(null);
         }
-        item.marker.setAnimation(google.maps.Animation.BOUNCE);
-
+        infoWindow.close();
+        currentMarker = null;
     };
 
     var numResponse = 0;
