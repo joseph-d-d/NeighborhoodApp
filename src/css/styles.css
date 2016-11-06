@@ -1,6 +1,9 @@
-html, body {
+html {
     height: 100%;
+}
 
+body {
+    height: 100%;
 }
 
 ul {
@@ -23,12 +26,17 @@ li {
     height: 100%;
 }
 
-#map-container, #map-row {
+#map-container {
     height: 100%;
     width: 100%;
     padding: 0;
 }
 
+#map-row {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
 #map {
     height: 100%;
 }
@@ -53,37 +61,8 @@ li {
     }
 
     #location-list ul {
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
-@media screen and (orientation: portrait) {
-    #left-col {
-        width: 60%;
-        opacity: .75;
-    }
 
-    #location-list ul {
-        font-size: 40px;
-    }
-
-    #hamburger-collapse {
-        font-size: 40px;
-    }
-
-    .top-bar {
-        height: 60px;
-    }
-
-    .info-header {
-        font-size: 40px;
-    }
-
-    .info-p {
-        font-size: 30px;
-    }
-
-    .info-hyperlink {
-        font-size: 25px;
-    }
-}
