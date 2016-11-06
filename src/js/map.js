@@ -14,7 +14,7 @@ function initMap(){
 function resizeMap(markers) {
     var bounds = new google.maps.LatLngBounds();
     for(var i = 0; i < markers.length; i++) {
-        bounds.extend(markers[i].marker.getPosition());
+        bounds.extend(markers[i].getPosition());
     }
     map.fitBounds(bounds);
 }

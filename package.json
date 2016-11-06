@@ -1,0 +1,31 @@
+{
+  "name": "neighborhoodapp",
+  "version": "1.0.0",
+  "description": "The NeighborhoodApp contains five hardcoded locations in Mountain View. When a location is selected on either the map or the list to the side a info window displays relevant information about the location. This information is provided as a courtesy of [Foursquare](https://foursquare.com/).",
+  "main": "index.html",
+  "dependencies": {
+    "jquery": "^3.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-jshint": "^2.0.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseph-d-d/NeighborhoodApp.git"
+  },
+  "author": "Joseph Dollhon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseph-d-d/NeighborhoodApp/issues"
+  },
+  "homepage": "https://github.com/joseph-d-d/NeighborhoodApp#readme"
+}

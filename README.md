@@ -1,5 +1,5 @@
 ## NeighborhoodApp
-The NeighborhoodApp contains five hardcoded locations in Mountain View. When a location is selected on either the map or the list to the side a info window displays relvent information about the location. This information is provided as a courtesy of [Foursquare](https://foursquare.com/).
+The NeighborhoodApp contains five hardcoded locations in Mountain View. When a location is selected on either the map or the list to the side a info window displays relevant information about the location. This information is provided as a courtesy of [Foursquare](https://foursquare.com/).
 
 ### Getting Started
 There are two steps involved in getting started running and using the NeighborhoodApp.

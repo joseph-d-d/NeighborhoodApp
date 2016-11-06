@@ -2,7 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
     <script src="js/knockout-3.4.0.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/map.js"></script>
@@ -15,7 +18,8 @@
     <div class="row">
         <div class="col-md-3 top-bar">
             <div class="navbar navbar-light bg-faded">
-                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#left-col"
+                <button class="navbar-toggler hidden-sm-up" id="hamburger-collapse" type="button" data-toggle="collapse"
+                        data-target="#left-col"
                         aria-controls="left-col" aria-expanded="true" aria-label="Toggle navigation">
                     &#9776;
                 </button>
